@@ -1,8 +1,9 @@
 ---
 layout: default
 ---
+{%- assign system = site.systems | where: "slug", page.system | first -%}
 <article class="project">
-  <p class="crumb"><a href="{{ '/' | relative_url }}">Projects</a></p>
+  <p class="crumb"><a href="{{ '/' | relative_url }}">Systems</a> / <a href="{{ system.url | relative_url }}">{{ system.title }}</a></p>
   <h1>{{ page.title }}</h1>
   <p class="game">{{ page.game }} ({{ page.year }}{% if page.arch %}, {{ page.arch }}{% endif %})</p>
 

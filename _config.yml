@@ -1,17 +1,22 @@
 title: x86recomp
 description: >-
-  Static recompilation of x86 Windows games into native programs, and the
-  game ports built on it.
+  Static recompilation of x86 and x86-64 games into native programs, and
+  the game ports built on it, by system.
 repo: https://github.com/JTM-rootstorm/x86recomp
 
 markdown: kramdown
 kramdown:
   input: GFM
 
+# Systems are _systems/<name>.md; a system's ports are _projects/<name>/,
+# served at /<name>/<port>/.
 collections:
-  projects:
+  systems:
     output: true
     permalink: /:name/
+  projects:
+    output: true
+    permalink: /:path/
 
 defaults:
   - scope:
@@ -19,9 +24,21 @@ defaults:
     values:
       layout: default
   - scope:
+      type: systems
+    values:
+      layout: system
+  - scope:
       type: projects
     values:
       layout: project
+  - scope:
+      path: _projects/pc
+    values:
+      system: pc
+  - scope:
+      path: _projects/ps4
+    values:
+      system: ps4
 
 exclude:
   - README.md

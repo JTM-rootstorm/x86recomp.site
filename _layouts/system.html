@@ -1,0 +1,30 @@
+---
+layout: default
+---
+{%- assign ports = site.projects | where: "system", page.slug | sort: "order" -%}
+<article class="system">
+  <p class="crumb"><a href="{{ '/' | relative_url }}">Systems</a></p>
+  <h1>{{ page.full }}</h1>
+
+  <dl class="facts">
+    <dt>CPU</dt>
+    <dd>{{ page.cpu }}</dd>
+    <dt>Built on</dt>
+    <dd>{{ page.base }}</dd>
+    <dt>State</dt>
+    <dd>{{ page.state }}</dd>
+  </dl>
+
+  {{ content }}
+
+  <h2>Ports</h2>
+  {%- if ports.size > 0 %}
+  <div class="cards">
+    {%- for p in ports %}
+    {% include card.html p=p %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p>None yet.</p>
+  {%- endif %}
+</article>

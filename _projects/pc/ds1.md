@@ -3,6 +3,8 @@ title: DS1-Rebuilt
 short: Dungeon Siege
 game: Dungeon Siege
 year: 2002
+theme: ds1
+fonts: "family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400"
 order: 1
 stage: playable
 status: Playable

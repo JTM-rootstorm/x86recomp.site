@@ -3,6 +3,8 @@ title: LSWTCS_Rebricked
 short: LEGO Star Wars
 game: "LEGO Star Wars: The Complete Saga"
 year: 2009
+theme: lswtcs
+fonts: "family=Fredoka:wght@400;600;700"
 order: 3
 stage: ingame
 status: In game

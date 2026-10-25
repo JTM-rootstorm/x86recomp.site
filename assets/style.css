@@ -50,9 +50,8 @@ a:hover { text-decoration: underline; }
   gap: 0.25rem 1.5rem; padding-top: 0.9rem; padding-bottom: 0.9rem;
 }
 .brand { font-weight: 700; font-size: 1.15rem; color: var(--fg); }
-nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 0.95rem; }
+nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1.25rem; font-size: 0.95rem; }
 nav a { color: var(--muted); }
-nav a[aria-current="page"] { color: var(--fg); font-weight: 600; }
 
 main { padding-top: 1.5rem; padding-bottom: 2rem; }
 
@@ -105,3 +104,25 @@ th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
 .facts dd { margin: 0; }
 
 .site-footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.85rem; padding-bottom: 2rem; }
+
+.menu { position: relative; }
+.menu summary { cursor: pointer; color: var(--muted); list-style: none; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary::after { content: " \25BE"; font-size: 0.8em; }
+.menu[open] summary, .menu summary:hover { color: var(--fg); }
+.menu-panel {
+  position: absolute; z-index: 10; top: calc(100% + 0.6rem); left: 0;
+  min-width: 15rem; max-width: calc(100vw - 32px);
+  background: var(--bg); border: 1px solid var(--rule); border-radius: 8px;
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.18); padding: 0.4rem 0;
+}
+.menu-group { padding: 0.3rem 0; }
+.menu-group + .menu-group { border-top: 1px solid var(--rule); }
+.menu-panel a { display: block; padding: 0.2rem 1rem; }
+.menu-system { color: var(--fg); font-weight: 600; }
+.menu-panel a.menu-port { color: var(--muted); padding-left: 1.75rem; }
+.menu-panel a.menu-port[aria-current="page"] { color: var(--fg); font-weight: 600; }
+
+.badge-system { color: var(--muted); }
+.card p.count { color: var(--muted); font-size: 0.85rem; }
+tr.group th { padding-top: 1rem; font-size: 0.95rem; color: var(--fg); }

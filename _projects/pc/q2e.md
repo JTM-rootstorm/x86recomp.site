@@ -4,6 +4,8 @@ short: Quake II Enhanced
 game: Quake II Enhanced
 year: 2023
 arch: x64
+theme: q2e
+fonts: "family=Chakra+Petch:wght@400;600;700"
 order: 4
 stage: boots
 status: Boots

@@ -5,17 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title and page.url != "/" %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.summary | default: site.description | strip }}">
+  {%- if page.fonts %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ page.fonts }}&display=swap">
+  {%- endif %}
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  {%- if page.theme %}
+  <link rel="stylesheet" href="{{ '/assets/themes.css' | relative_url }}">
+  {%- endif %}
 </head>
-<body>
+<body{% if page.theme %} class="theme theme-{{ page.theme }}"{% endif %}>
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="{{ '/' | relative_url }}">x86recomp</a>
       <nav>
-        {%- assign projects = site.projects | sort: "order" -%}
-        {%- for p in projects %}
-        <a href="{{ p.url | relative_url }}"{% if page.url == p.url %} aria-current="page"{% endif %}>{{ p.short }}</a>
-        {%- endfor %}
+        <details class="menu">
+          <summary>Systems</summary>
+          <div class="menu-panel">
+            {%- assign systems = site.systems | sort: "order" -%}
+            {%- for s in systems %}
+            {%- assign ports = site.projects | where: "system", s.slug | sort: "order" %}
+            <div class="menu-group">
+              <a class="menu-system" href="{{ s.url | relative_url }}">{{ s.full }}</a>
+              {%- for p in ports %}
+              <a class="menu-port" href="{{ p.url | relative_url }}"{% if page.url == p.url %} aria-current="page"{% endif %}>{{ p.short }}</a>
+              {%- endfor %}
+            </div>
+            {%- endfor %}
+          </div>
+        </details>
         <a href="{{ site.repo }}">GitHub</a>
       </nav>
     </div>
@@ -29,5 +48,20 @@
     your own copy of the game. The games belong to their publishers;
     none of these projects is affiliated with or endorsed by them.</p>
   </footer>
+  <script>
+    // Close the Systems menu on a click outside it or on Escape.
+    (function () {
+      var menu = document.querySelector(".menu");
+      document.addEventListener("click", function (e) {
+        if (menu.open && !menu.contains(e.target)) menu.open = false;
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && menu.open) {
+          menu.open = false;
+          menu.querySelector("summary").focus();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

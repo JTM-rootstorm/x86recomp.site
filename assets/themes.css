@@ -1,0 +1,125 @@
+/* Per-port page themes: a page sets `theme: <name>` (and its Google
+   Fonts in `fonts:`) in its front matter. Each theme is a fixed palette,
+   the same in light and dark mode, redefining the tokens of style.css. */
+
+.theme { background: var(--bg); color-scheme: var(--scheme, light); }
+.theme .site-header { background: var(--head-bg); border-bottom: var(--head-rule); }
+.theme .brand, .theme .site-header nav a, .theme .menu summary { color: var(--head-fg); }
+.theme .menu-panel { background: var(--panel); }
+.theme .menu-panel a.menu-system { color: var(--fg); }
+.theme .menu-panel a.menu-port { color: var(--muted); }
+.theme h1, .theme h2, .theme h3 { font-family: var(--display); }
+
+/* Dungeon Siege: an illuminated manuscript in a leather binding. */
+.theme-ds1 {
+  --bg: #f3e9d2; --fg: #2e2116; --muted: #6b5640; --rule: #d3bf96;
+  --panel: #ebdcb9; --link: #8a2a14; --code-bg: #e4d2ab;
+  --playable: #3d6b1f; --ingame: #2d4f7c; --boots: #8a5a00; --early: #6b5640;
+  --head-bg: #2b1d12; --head-fg: #d9b45a; --head-rule: 3px double #b08a3e;
+  --display: "Cinzel", Georgia, serif;
+  font-family: "EB Garamond", Georgia, serif; font-size: 18px;
+  background-image: radial-gradient(ellipse at center, transparent 55%, rgb(120 80 30 / 0.12));
+  background-attachment: fixed;
+}
+.theme-ds1 h1 { color: #5a1a0c; letter-spacing: 0.04em; }
+.theme-ds1 h1::first-letter { color: #a8791f; font-size: 1.25em; }
+.theme-ds1 h2 { border-top: none; color: #5a1a0c; }
+.theme-ds1 h2::before { content: "\2767  "; color: #a8791f; }
+.theme-ds1 .facts { border: 3px double #b08a3e; border-radius: 2px; }
+
+/* Call of Duty: olive drab and a field dossier. */
+.theme-cod1 {
+  --scheme: dark;
+  --bg: #23261b; --fg: #e3dbc3; --muted: #aaa384; --rule: #3e4331;
+  --panel: #2e3224; --link: #d9a441; --code-bg: #33372b;
+  --playable: #8fbf5a; --ingame: #d9a441; --boots: #d98841; --early: #aaa384;
+  --head-bg: #181a12; --head-fg: #d8cfb0; --head-rule: 4px solid #4b5236;
+  --display: "Stardos Stencil", Impact, sans-serif;
+}
+.theme-cod1 h1 { text-transform: uppercase; letter-spacing: 0.06em; font-size: 2.6rem; }
+.theme-cod1 h2 { text-transform: uppercase; letter-spacing: 0.08em; border-top: 2px dashed var(--rule); }
+.theme-cod1 .brand { font-family: "Stardos Stencil", Impact, sans-serif; letter-spacing: 0.05em; }
+.theme-cod1 .facts {
+  background: #cdbf93; color: #2a2414; border: none; border-radius: 0;
+  font-family: "Special Elite", "Courier New", monospace;
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.35); transform: rotate(-0.4deg);
+  --muted: #5e5132; --link: #6b2d10; --ingame: #6b2d10;
+}
+.theme-cod1 .crumb, .theme-cod1 .game { font-family: "Special Elite", "Courier New", monospace; }
+
+/* LEGO Star Wars: a starfield header over bright bricks. */
+.theme-lswtcs {
+  --bg: #fbfaf5; --fg: #1b1b1b; --muted: #5a5a5a; --rule: #e8e3d3;
+  --panel: #ffd500; --link: #c4161c; --code-bg: #f1ede0;
+  --playable: #237841; --ingame: #0057a6; --boots: #c4161c; --early: #5a5a5a;
+  --head-bg: #05060c; --head-fg: #ffe81f; --head-rule: 6px solid #c4161c;
+  --display: "Fredoka", "Arial Rounded MT Bold", sans-serif;
+  font-family: "Fredoka", system-ui, sans-serif;
+}
+.theme-lswtcs .site-header {
+  background:
+    radial-gradient(1px 1px at 12% 30%, #fff, transparent),
+    radial-gradient(1px 1px at 37% 70%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 58% 25%, #fff, transparent),
+    radial-gradient(1px 1px at 81% 60%, #fff, transparent),
+    radial-gradient(1px 1px at 93% 20%, #ccd, transparent),
+    #05060c;
+}
+.theme-lswtcs .site-header nav a, .theme-lswtcs .menu summary { color: #ccc8a0; }
+.theme-lswtcs .menu-panel { background: #fff; }
+.theme-lswtcs h1 {
+  display: inline-block; background: #c4161c; color: #fff; font-weight: 700;
+  padding: 0.15em 0.5em 0.2em; border-radius: 6px;
+  box-shadow: inset 0 -5px 0 rgb(0 0 0 / 0.18);
+}
+.theme-lswtcs h2 { border-top: none; color: #0057a6; font-weight: 700; }
+.theme-lswtcs .facts {
+  position: relative; margin-top: 1.6rem; border: none; border-radius: 6px;
+  box-shadow: inset 0 -5px 0 rgb(0 0 0 / 0.12);
+  --muted: #5c4a00;
+}
+/* Studs along the top of the brick. */
+.theme-lswtcs .facts::before {
+  content: ""; position: absolute; left: 0.75rem; right: 0.75rem; top: -0.5rem; height: 0.55rem;
+  background: radial-gradient(circle at 50% 100%, #ffd500 0.42rem, transparent 0.45rem) 0 0 / 1.6rem 1rem repeat-x;
+}
+.theme-lswtcs .badge { background: #fff; }
+
+/* Quake II: rusted metal and orange readouts. */
+.theme-q2e {
+  --scheme: dark;
+  --bg: #15130f; --fg: #d8cdb5; --muted: #9b8e73; --rule: #3a3226;
+  --panel: #201c16; --link: #e8912d; --code-bg: #262119;
+  --playable: #8fbf5a; --ingame: #e8912d; --boots: #f0b43c; --early: #9b8e73;
+  --head-bg: #0e0c0a; --head-fg: #e8912d; --head-rule: none;
+  --display: "Chakra Petch", "Arial Narrow", sans-serif;
+}
+.theme-q2e .site-header::after {
+  content: ""; display: block; height: 6px;
+  background: repeating-linear-gradient(-45deg, #6b4a26 0 10px, #1a1612 10px 20px);
+}
+.theme-q2e h1 { text-transform: uppercase; color: #e8912d; letter-spacing: 0.08em; font-weight: 700; text-shadow: 0 0 14px rgb(232 145 45 / 0.35); }
+.theme-q2e h2 { text-transform: uppercase; letter-spacing: 0.08em; color: #c9b48a; border-top: 1px solid #4a3e2c; }
+.theme-q2e .facts {
+  background: linear-gradient(180deg, #2a251d, #1b1813); border: 1px solid #4a3e2c; border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
+/* Gravity Rush: twilight over a floating city, gold and violet. */
+.theme-gravityrush {
+  --scheme: dark;
+  --bg: #1d1a3b; --fg: #ece6f6; --muted: #b3a9cd; --rule: #3b3466;
+  --panel: rgb(255 255 255 / 0.06); --link: #f0c25e; --code-bg: rgb(255 255 255 / 0.08);
+  --playable: #9fe3a8; --ingame: #9ccbff; --boots: #f0c25e; --early: #b3a9cd;
+  --head-bg: transparent; --head-fg: #f0c25e; --head-rule: 1px solid rgb(240 194 94 / 0.3);
+  --display: "Marcellus", Georgia, serif;
+  font-family: "Alegreya Sans", system-ui, sans-serif; font-size: 17px;
+  background: linear-gradient(180deg, #2a2056 0%, #1d1a3b 45%, #12102a 100%) fixed;
+}
+.theme-gravityrush .menu-panel { background: #252050; }
+.theme-gravityrush h1 {
+  color: #f0c25e; font-size: 2.4rem; text-shadow: 0 0 18px rgb(240 194 94 / 0.4);
+  transform: rotate(-2deg); transform-origin: left center;
+}
+.theme-gravityrush h2 { border-top: 1px solid var(--rule); color: #e6d3a3; }
+.theme-gravityrush .facts { backdrop-filter: blur(4px); border-color: rgb(240 194 94 / 0.25); }

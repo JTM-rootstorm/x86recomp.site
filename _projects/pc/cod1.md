@@ -3,6 +3,8 @@ title: CoD1-Reissued
 short: Call of Duty
 game: Call of Duty
 year: 2003
+theme: cod1
+fonts: "family=Stardos+Stencil:wght@400;700&family=Special+Elite"
 order: 2
 stage: ingame
 status: In game

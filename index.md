@@ -4,36 +4,44 @@ title: x86recomp
 
 # x86recomp
 
-<p class="lede">Static recompilation of x86 Windows games into native
+<p class="lede">Static recompilation of x86 and x86-64 games into native
 64-bit programs for Linux and macOS: the scaffold that gets a game running
 natively while its code is replaced, piece by piece, with hand-written
 C++.</p>
 
 A game's machine code is translated ahead of time into C++ and linked
-against a runtime that reimplements the parts of Windows and its
-middleware the game uses. There is no emulator, interpreter or Wine in
-the result, and no game code or data in any of the repositories: each
+against a runtime that reimplements the parts of its operating system
+and middleware the game uses. There is no emulator, interpreter or Wine
+in the result, and no game code or data in any of the repositories: each
 port builds from your own copy of the game.
 
-## Projects
+## Systems
 
+{% assign systems = site.systems | sort: "order" -%}
 <div class="cards">
-{%- assign projects = site.projects | sort: "order" -%}
-{%- for p in projects %}
-  <a class="card" href="{{ p.url | relative_url }}">
-    <h3>{{ p.title }}</h3>
-    <p class="game">{{ p.game }} ({{ p.year }})</p>
-    <span class="badge badge-{{ p.stage }}">{{ p.status }}</span>
-    <p class="summary">{{ p.summary }}</p>
+{%- for s in systems %}
+  {%- assign ports = site.projects | where: "system", s.slug %}
+  <a class="card" href="{{ s.url | relative_url }}">
+    <h3>{{ s.full }}</h3>
+    <p class="game">{{ s.cpu }}</p>
+    <span class="badge badge-system">{{ s.state }}</span>
+    <p class="summary">{{ s.summary }}</p>
+    <p class="summary count">{% if ports.size == 0 %}No ports yet{% elsif ports.size == 1 %}1 port{% else %}{{ ports.size }} ports{% endif %}</p>
   </a>
 {%- endfor %}
 </div>
 
+## All ports
+
 <div class="table-scroll">
 <table>
   <thead><tr><th>Port</th><th>Game</th><th>Status</th><th>Platforms</th><th>Updated</th></tr></thead>
+  {%- for s in systems %}
+  {%- assign ports = site.projects | where: "system", s.slug | sort: "order" %}
+  {%- if ports.size > 0 %}
   <tbody>
-  {%- for p in projects %}
+    <tr class="group"><th colspan="5"><a href="{{ s.url | relative_url }}">{{ s.full }}</a></th></tr>
+    {%- for p in ports %}
     <tr>
       <td><a href="{{ p.url | relative_url }}">{{ p.title }}</a></td>
       <td>{{ p.game }} ({{ p.year }}{% if p.arch %}, {{ p.arch }}{% endif %})</td>
@@ -41,28 +49,38 @@ port builds from your own copy of the game.
       <td>{{ p.platforms }}</td>
       <td>{{ p.updated | date: "%Y-%m-%d" }}</td>
     </tr>
-  {%- endfor %}
+    {%- endfor %}
   </tbody>
+  {%- endif %}
+  {%- endfor %}
 </table>
 </div>
 
 ## What x86recomp provides
 
-- **Lifter** (`recomp_lift`): decodes a PE with Zydis and emits C++ for
-  every function, one basic block at a time, with exact x86 integer and
-  flag semantics. 32-bit images are the main target; x64 images (with
-  AVX) lift too, for Quake II Enhanced.
-- **x87 and SSE models**: exact 80-bit x87 (precision and rounding
-  control, status-word flags) and the XMM registers with MXCSR, on
-  Berkeley SoftFloat, tested bit for bit against the real CPU.
-- **Runtime**: the guest address space, PE loading, threads, SEH, crash
-  and hang reports.
-- **HLE**: Win32 on POSIX and SDL3, plus Miles Sound System (with EAX 1-3
-  on its own reverb), Bink, DirectDraw 7/Direct3D 7, OpenGL 1.x,
-  Direct3D 9 and D3DX 9, DirectSound 8, DirectInput 8 and XInput.
-  Graphics run on SDL_GPU: Vulkan on Linux, native Metal on macOS.
+- **Lifter** (`recomp_lift`): emits C++ for every function of a game's
+  executables, one basic block at a time, with exact integer and flag
+  semantics.
+  - **x86** (32-bit PE): integer, x87 and SSE/SSE2.
+  - **x86-64**: PE32+ images on the Win64 ABI, and through platform
+    modules other formats on System V; AVX and the SSE3-4 extensions,
+    against a fixed CPU model (AMD family 16h) that grows only as the
+    lifter implements each feature bit-exactly.
+- **CPU models**: exact 80-bit x87 (precision and rounding control,
+  status-word flags) and the XMM/YMM registers with MXCSR, on Berkeley
+  SoftFloat, tested bit for bit against the real CPU.
+- **Runtime**: the guest address space, image loading, threads,
+  exceptions (SEH and x64 unwinding), crash and hang reports.
+- **Windows HLE**: Win32 on POSIX and SDL3, the UCRT and MSVCP140, Miles
+  Sound System (with EAX 1-3 on its own reverb), Bink, DirectDraw/Direct3D
+  7, OpenGL 1.x, Direct3D 9 and D3DX 9, DirectSound 8, DirectInput 8 and
+  XInput. Graphics run on SDL_GPU: Vulkan on Linux, native Metal on macOS.
 - **Shader translators**: D3DX 9's HLSL dialect and compiled Direct3D 9
   shaders (models 1-3) to GLSL.
+- **Platform modules** (in progress): consoles whose CPU the lifter
+  already models plug into the same core instead of forking it. The
+  first is Orbis, for the [PlayStation 4]({{ '/ps4/' | relative_url }}),
+  on its own branch.
 
 The lifted code is an exact oracle, not the end product: each port
 replaces lifted functions with native C++ one subsystem at a time,
