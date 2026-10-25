@@ -9,7 +9,7 @@ order: 3
 stage: ingame
 status: In game
 summary: Menus, the cantina and several levels load and play, with keyboard and Xbox pad. Hitches on new effects; past the first chapter untested. The first Direct3D 9 user.
-platforms: Linux x86-64; macOS on Apple Silicon (not built yet)
+platforms: Linux x86-64; macOS on Apple Silicon (in game, scripted runs)
 release: Steam (app 32440)
 repo: https://github.com/JTM-rootstorm/LSWTCS_Rebricked
 updated: 2026-10-25
@@ -42,6 +42,19 @@ Not yet seen: the minikit build and status screen after a tally,
 returning to the cantina, saving and loading, chapters past
 Negotiations, the ending.
 
+### macOS
+
+Builds and runs on Apple Silicon (tested on an M3 Pro, macOS 27) with
+SDL_GPU on Metal, and passes its tests. Scripted runs show the legal
+screens, the attract movie, the title screen and the menus, then New Game
+into the cantina at a steady 60 fps (fullscreen and windowed) with the
+characters' shadows; with `LSWTCS_LEVEL`, Negotiations loads and runs.
+Not yet played by hand on the Mac: scripted keys do not reach the game's
+DirectInput keyboard in a background window, so the player has not been
+moved there. Bringing it up on Metal fixed four things in x86recomp: the
+window title (Windows-1252 text), the hidden fullscreen window, rendering
+to mip levels, and sampler LOD bias, which Metal lacks (the shadows).
+
 ## Known issues
 
 - **Hitches on new effects.** The first time a level meets a new
@@ -54,7 +67,6 @@ Negotiations, the ending.
 - Two C runtime jump tables are still dispatched dynamically; neither
   has been reached.
 - In-level sound and music have not been checked by ear.
-- macOS has not been built.
 
 ## Next
 

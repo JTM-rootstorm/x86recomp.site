@@ -9,10 +9,10 @@ order: 1
 stage: playable
 status: Playable
 summary: Single player plays from a new game to Wesrin Cross, with sound, music, voices and movies. Where x86recomp was developed.
-platforms: Linux x86-64; macOS on Apple Silicon (in progress)
+platforms: Linux x86-64; macOS on Apple Silicon (in game, scripted runs)
 release: GOG, version 1.11.1
 repo: https://github.com/JTM-rootstorm/DS1-Rebuilt
-updated: 2026-10-14
+updated: 2026-10-25
 ---
 
 The project x86recomp grew out of: the lifter, x87 model, runtime and
@@ -41,10 +41,13 @@ Not yet seen: regions past Wesrin Cross, the ending.
 
 ### macOS
 
-Builds and runs on Apple Silicon with SDL_GPU on native Metal. Scripted
-runs reach the farm in game (terrain, animated water, fog, the HUD, the
-pause menu) with sound and voices; not yet played by hand or compared
-frame by frame against the reference backend.
+Builds and runs on Apple Silicon (tested on an M3 Pro, macOS 27) with
+SDL_GPU on Metal, and passes its tests. Scripted runs go from the menus
+and a new game through the intro cinematic (with its voice lines) into
+the farm: terrain, animated water, fog, the HUD, the pause menu, sound and
+voices, at a steady 60 fps, including fullscreen on a 5K display with the
+GPU cursor. Started and checked by hand (the intro, 5K fullscreen, the
+cursor) but not yet played by hand.
 
 ## Native replacements
 

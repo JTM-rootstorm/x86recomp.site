@@ -9,10 +9,10 @@ order: 2
 stage: ingame
 status: In game
 summary: The training level plays through to completion. Widescreen, Hor+ FOV, a scaled HUD and exact frame caps are in; hot engine code is going native.
-platforms: Linux x86-64; macOS on Apple Silicon (in progress)
+platforms: Linux x86-64; macOS on Apple Silicon (training played by hand)
 release: Steam (app 2620), v1.5b, single player
 repo: https://github.com/JTM-rootstorm/CoD1-Reissued
-updated: 2026-10-19
+updated: 2026-10-25
 ---
 
 A native port of Call of Duty's single player. Goals beyond running
@@ -31,9 +31,14 @@ game's own EAX Manager on x86recomp's providers.
 
 ### macOS
 
-Builds and starts on Apple Silicon with SDL_GPU on Metal; scripted runs
-play the intro and reach the training level. Not yet played by hand or
-compared against the reference backend.
+Builds and runs on Apple Silicon (tested on an M3 Pro, macOS 27) with
+SDL_GPU on Metal, and passes its tests. Scripted runs play the intro and
+reach the training level at 60 fps (vsync, also fullscreen on a 5K
+display). The training level has been played by hand on the Mac through
+the obstacle course: the signs, the squad's run, the fences, crawling
+under the wire and the machine-gun section, the TAB objectives, with
+EAX 3 and with Miles. Not yet played to the end of training or past it
+on the Mac.
 
 ## Native replacements
 
