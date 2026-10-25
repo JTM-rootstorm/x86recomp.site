@@ -16,6 +16,10 @@ layout: default
     <dd>{{ page.release }}</dd>
     <dt>Repository</dt>
     <dd>{% if page.repo %}<a href="{{ page.repo }}">{{ page.repo | remove: "https://github.com/" }}</a>{% else %}not public yet{% endif %}</dd>
+    {%- if system.branch %}
+    <dt>x86recomp</dt>
+    <dd>branch <a href="{{ site.repo }}/tree/{{ system.branch }}"><code>{{ system.branch }}</code></a> (<a href="{{ site.repo }}/commits/{{ system.branch }}">commits</a>)</dd>
+    {%- endif %}
     <dt>Updated</dt>
     <dd>{{ page.updated | date: "%Y-%m-%d" }}</dd>
   </dl>

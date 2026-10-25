@@ -13,6 +13,10 @@ layout: default
     <dd>{{ page.base }}</dd>
     <dt>State</dt>
     <dd>{{ page.state }}</dd>
+    {%- if page.branch %}
+    <dt>Progress</dt>
+    <dd>x86recomp branch <a href="{{ site.repo }}/tree/{{ page.branch }}"><code>{{ page.branch }}</code></a> (<a href="{{ site.repo }}/commits/{{ page.branch }}">commits</a>), until merged into main</dd>
+    {%- endif %}
   </dl>
 
   {{ content }}

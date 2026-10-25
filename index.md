@@ -24,7 +24,7 @@ port builds from your own copy of the game.
   <a class="card" href="{{ s.url | relative_url }}">
     <h3>{{ s.full }}</h3>
     <p class="game">{{ s.cpu }}</p>
-    <span class="badge badge-system">{{ s.state }}</span>
+    <span class="badge badge-system">{{ s.state }}</span>{% if s.branch %} <span class="branch">on branch <code>{{ s.branch }}</code></span>{% endif %}
     <p class="summary">{{ s.summary }}</p>
     <p class="summary count">{% if ports.size == 0 %}No ports yet{% elsif ports.size == 1 %}1 port{% else %}{{ ports.size }} ports{% endif %}</p>
   </a>
@@ -66,6 +66,8 @@ port builds from your own copy of the game.
     modules other formats on System V; AVX and the SSE3-4 extensions,
     against a fixed CPU model (AMD family 16h) that grows only as the
     lifter implements each feature bit-exactly.
+  - **AArch64** (on the `horizon` branch): a second core with its own
+    lifter (`recomp_lift_a64`) and CPU model, for the Switch.
 - **CPU models**: exact 80-bit x87 (precision and rounding control,
   status-word flags) and the XMM/YMM registers with MXCSR, on Berkeley
   SoftFloat, tested bit for bit against the real CPU.
@@ -77,10 +79,13 @@ port builds from your own copy of the game.
   XInput. Graphics run on SDL_GPU: Vulkan on Linux, native Metal on macOS.
 - **Shader translators**: D3DX 9's HLSL dialect and compiled Direct3D 9
   shaders (models 1-3) to GLSL.
-- **Platform modules** (in progress): consoles whose CPU the lifter
-  already models plug into the same core instead of forking it. The
-  first is Orbis, for the [PlayStation 4]({{ '/ps4/' | relative_url }}),
-  on its own branch.
+- **Platform modules** (in progress): consoles plug into the shared
+  core and host layer instead of forking them, each on its own branch
+  until it is merged: Orbis for the
+  [PlayStation 4]({{ '/ps4/' | relative_url }}) on
+  [`ps4`]({{ site.repo }}/tree/ps4), and Horizon for the
+  [Switch]({{ '/switch/' | relative_url }}) on
+  [`horizon`]({{ site.repo }}/tree/horizon).
 
 The lifted code is an exact oracle, not the end product: each port
 replaces lifted functions with native C++ one subsystem at a time,

@@ -126,3 +126,4 @@ th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
 .badge-system { color: var(--muted); }
 .card p.count { color: var(--muted); font-size: 0.85rem; }
 tr.group th { padding-top: 1rem; font-size: 0.95rem; color: var(--fg); }
+.card .branch { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.4rem; }
