@@ -5,7 +5,7 @@ the game ports built on it, by system, served by GitHub Pages (Jekyll,
 no Actions).
 
 - `index.md`: the landing page; its systems and port list are generated.
-- `_systems/<system>.md`: one page per system (PC, PS4, Switch). `order`
+- `_systems/<system>.md`: one page per system (PC, PS4, Switch, Xbox 360). `order`
   sets its position in the Systems menu.
 - `_projects/<system>/<port>.md`: one page per port, served at
   `/<system>/<port>/`. The front matter holds the status shown on the

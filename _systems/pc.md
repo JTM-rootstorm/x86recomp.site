@@ -8,7 +8,7 @@ state: Ports running
 summary: 32-bit and 64-bit Windows games, on x86recomp's Win32 and DirectX/middleware HLE.
 ---
 
-Windows games for x86 and x86-64 PCs. The lifter translates their PE
+Windows games for x86 and x86-64 PCs, on x86recomp's main branch. The lifter translates their PE
 images to C++, and the runtime reimplements the Windows, DirectX and
 middleware APIs they import: Win32 on POSIX and SDL3, Miles, Bink,
 DirectDraw/Direct3D 7, OpenGL 1.x, Direct3D 9 and D3DX 9, DirectSound,

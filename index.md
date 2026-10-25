@@ -4,8 +4,9 @@ title: x86recomp
 
 # x86recomp
 
-<p class="lede">Static recompilation of x86 and x86-64 games into native
-64-bit programs for Linux and macOS: the scaffold that gets a game running
+<p class="lede">Static recompilation of games into native 64-bit programs
+for Linux and macOS (x86 and x86-64 PC games on main; PowerPC and
+AArch64 consoles on their own branches): the scaffold that gets a game running
 natively while its code is replaced, piece by piece, with hand-written
 C++.</p>
 
@@ -68,9 +69,13 @@ port builds from your own copy of the game.
     lifter implements each feature bit-exactly.
   - **AArch64** (on the `horizon` branch): a second core with its own
     lifter (`recomp_lift_a64`) and CPU model, for the Switch.
+  - **PowerPC** (on the `x360` branch): a core for 64-bit PowerPC in
+    32-bit mode (`recomp_lift_ppc`), with exact floating point and VMX,
+    for the Xbox 360.
 - **CPU models**: exact 80-bit x87 (precision and rounding control,
   status-word flags) and the XMM/YMM registers with MXCSR, on Berkeley
-  SoftFloat, tested bit for bit against the real CPU.
+  SoftFloat, tested bit for bit against the real CPU (or, for console
+  CPUs, an oracle: Unicorn for AArch64, QEMU for PowerPC).
 - **Runtime**: the guest address space, image loading, threads,
   exceptions (SEH and x64 unwinding), crash and hang reports.
 - **Windows HLE**: Win32 on POSIX and SDL3, the UCRT and MSVCP140, Miles
@@ -85,7 +90,9 @@ port builds from your own copy of the game.
   [PlayStation 4]({{ '/ps4/' | relative_url }}) on
   [`ps4`]({{ site.repo }}/tree/ps4), and Horizon for the
   [Switch]({{ '/switch/' | relative_url }}) on
-  [`horizon`]({{ site.repo }}/tree/horizon).
+  [`horizon`]({{ site.repo }}/tree/horizon), and the Xbox 360 module
+  for the [Xbox 360]({{ '/x360/' | relative_url }}) on
+  [`x360`]({{ site.repo }}/tree/x360).
 
 The lifted code is an exact oracle, not the end product: each port
 replaces lifted functions with native C++ one subsystem at a time,

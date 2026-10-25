@@ -9,7 +9,7 @@ state: Groundwork
 summary: An AArch64 core beside the x86 one, and the Horizon module on it. Lifts and runs a homebrew NRO checked against Unicorn; no ports yet.
 ---
 
-The Switch's CPU is AArch64, so x86recomp grows a second CPU core beside
+The Switch's CPU is AArch64, so x86recomp grows a CPU core for it beside
 the x86 one: an AArch64 lifter (`recomp_lift_a64`) and the CPU model its
 lifted code runs on (integer, flags, the exclusive monitor). The
 **Horizon** platform module sits on that core as Orbis sits on the x64
