@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<article class="project">
+  <p class="crumb"><a href="{{ '/' | relative_url }}">Projects</a></p>
+  <h1>{{ page.title }}</h1>
+  <p class="game">{{ page.game }} ({{ page.year }}{% if page.arch %}, {{ page.arch }}{% endif %})</p>
+
+  <dl class="facts">
+    <dt>Status</dt>
+    <dd><span class="badge badge-{{ page.stage }}">{{ page.status }}</span></dd>
+    <dt>Platforms</dt>
+    <dd>{{ page.platforms }}</dd>
+    <dt>Game release</dt>
+    <dd>{{ page.release }}</dd>
+    <dt>Repository</dt>
+    <dd>{% if page.repo %}<a href="{{ page.repo }}">{{ page.repo | remove: "https://github.com/" }}</a>{% else %}not public yet{% endif %}</dd>
+    <dt>Updated</dt>
+    <dd>{{ page.updated | date: "%Y-%m-%d" }}</dd>
+  </dl>
+
+  {{ content }}
+</article>

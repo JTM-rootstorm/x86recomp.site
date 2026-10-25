@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title and page.url != "/" %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.summary | default: site.description | strip }}">
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="{{ '/' | relative_url }}">x86recomp</a>
+      <nav>
+        {%- assign projects = site.projects | sort: "order" -%}
+        {%- for p in projects %}
+        <a href="{{ p.url | relative_url }}"{% if page.url == p.url %} aria-current="page"{% endif %}>{{ p.short }}</a>
+        {%- endfor %}
+        <a href="{{ site.repo }}">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    {{ content }}
+  </main>
+  <footer class="wrap site-footer">
+    <p>x86recomp and the ports are MIT licensed. No game code or data is
+    hosted here or in any of the repositories: every port builds from
+    your own copy of the game. The games belong to their publishers;
+    none of these projects is affiliated with or endorsed by them.</p>
+  </footer>
+</body>
+</html>

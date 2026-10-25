@@ -1,0 +1,30 @@
+title: x86recomp
+description: >-
+  Static recompilation of x86 Windows games into native programs, and the
+  game ports built on it.
+repo: https://github.com/JTM-rootstorm/x86recomp
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+collections:
+  projects:
+    output: true
+    permalink: /:name/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      type: projects
+    values:
+      layout: project
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
