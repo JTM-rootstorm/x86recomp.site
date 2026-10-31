@@ -29,10 +29,13 @@ log.
   libkernel (memory, pthreads, files, event queues), libSceLibcInternal,
   the system and user services, VideoOut, GnmDriver and the GPU's
   command processor, AudioOut on the software mixer, AvPlayer on ffmpeg,
-  SaveData, networking and PSN (signed out), fonts on FreeType, the pad
-  and trophies.
-- **Next**: the NGS2 sound engine, and the GPU front end on x86recomp's
-  graphics device (draws, GCN shaders, tiled surfaces).
+  SaveData, networking and PSN (signed out), fibers, the NGS2 sound
+  engine, fonts on FreeType, the pad and trophies.
+- **GPU front end** on x86recomp's graphics device: draws and compute
+  dispatches, GCN shaders translated to GLSL, textures in the console's
+  tile modes, compute image stores.
+- **Next**: the rest of the GPU (the shader instructions left, render
+  targets the renderer does not track yet).
 
 Core lifter work it brought: CMPXCHG16B, FXSAVE/FXRSTOR, 256-bit
 conversions, `jrcxz`, locked `xchg`, and the System V x64 ABI.
