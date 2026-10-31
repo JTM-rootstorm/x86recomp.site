@@ -1,0 +1,9 @@
+{%- comment -%}
+The latest commits to include.repo, filled in by the script in
+default.html; without it, a link to the commits.
+{%- endcomment -%}
+<section class="recent" data-repo="{{ include.repo | remove: 'https://github.com/' }}">
+  <h2>Recent commits</h2>
+  <ol class="commits"></ol>
+  <p><a href="{{ include.repo }}/commits">All commits</a></p>
+</section>

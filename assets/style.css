@@ -127,3 +127,8 @@ th { color: var(--muted); font-weight: 600; font-size: 0.85rem; }
 .card p.count { color: var(--muted); font-size: 0.85rem; }
 tr.group th { padding-top: 1rem; font-size: 0.95rem; color: var(--fg); }
 .card .branch { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.4rem; }
+
+.commits { list-style: none; padding: 0; margin: 0.5rem 0; }
+.commits li { padding: 0.3rem 0; border-bottom: 1px solid var(--rule); }
+.commits time { color: var(--muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; margin-right: 0.5rem; }
+.commits:empty { display: none; }

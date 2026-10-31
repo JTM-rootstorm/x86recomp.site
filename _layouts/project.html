@@ -25,4 +25,7 @@ layout: default
   </dl>
 
   {{ content }}
+  {%- if page.repo %}
+  {% include commits.html repo=page.repo %}
+  {%- endif %}
 </article>

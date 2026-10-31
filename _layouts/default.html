@@ -63,34 +63,55 @@
       });
     })();
 
-    // Replace each "updated" link's text with the date of the latest
-    // commit it points at (GitHub API, cached for an hour per visitor).
+    // Fill each "updated" link with the date of the latest commit it
+    // points at, and each recent-commits list with the last five (GitHub
+    // API, cached for an hour per visitor).
     (function () {
       var groups = {};
-      document.querySelectorAll("a.updated[data-repo]").forEach(function (a) {
-        var key = a.dataset.repo + "@" + (a.dataset.branch || "");
-        (groups[key] = groups[key] || []).push(a);
+      document.querySelectorAll("a.updated[data-repo], .recent[data-repo]").forEach(function (el) {
+        var key = el.dataset.repo + "@" + (el.dataset.branch || "");
+        (groups[key] = groups[key] || []).push(el);
       });
       Object.keys(groups).forEach(function (key) {
-        var links = groups[key], repo = links[0].dataset.repo,
-            branch = links[0].dataset.branch, store = "updated:" + key;
-        function show(date) {
-          links.forEach(function (a) {
-            a.textContent = date;
-            a.title = "Latest commit to " + repo + (branch ? " (" + branch + ")" : "");
+        var els = groups[key], repo = els[0].dataset.repo,
+            branch = els[0].dataset.branch, store = "commits:" + key;
+        function show(commits) {
+          els.forEach(function (el) {
+            if (el.tagName === "A") {
+              el.textContent = commits[0].date;
+              el.title = "Latest commit to " + repo + (branch ? " (" + branch + ")" : "");
+              return;
+            }
+            var list = el.querySelector(".commits");
+            commits.forEach(function (c) {
+              var li = document.createElement("li"), a = document.createElement("a"),
+                  date = document.createElement("time");
+              a.href = c.url;
+              a.textContent = c.message;
+              date.textContent = c.date;
+              li.append(date, " ", a);
+              list.append(li);
+            });
           });
         }
         try {
           var hit = JSON.parse(localStorage.getItem(store));
-          if (hit && Date.now() - hit.at < 3600e3) return show(hit.date);
+          if (hit && Date.now() - hit.at < 3600e3) return show(hit.commits);
         } catch (e) {}
-        fetch("https://api.github.com/repos/" + repo + "/commits?per_page=1" +
+        fetch("https://api.github.com/repos/" + repo + "/commits?per_page=5" +
               (branch ? "&sha=" + encodeURIComponent(branch) : ""))
           .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-          .then(function (commits) {
-            var date = commits[0].commit.committer.date.slice(0, 10);
-            show(date);
-            try { localStorage.setItem(store, JSON.stringify({ at: Date.now(), date: date })); } catch (e) {}
+          .then(function (data) {
+            var commits = data.map(function (c) {
+              return {
+                date: c.commit.committer.date.slice(0, 10),
+                message: c.commit.message.split("\n")[0],
+                url: c.html_url
+              };
+            });
+            if (!commits.length) return;
+            show(commits);
+            try { localStorage.setItem(store, JSON.stringify({ at: Date.now(), commits: commits })); } catch (e) {}
           })
           .catch(function () {});
       });
