@@ -12,7 +12,6 @@ summary: Menus, the cantina and several levels load and play, with keyboard and 
 platforms: Linux x86-64; macOS on Apple Silicon (in game, scripted runs)
 release: Steam (app 32440)
 repo: https://github.com/JTM-rootstorm/LSWTCS_Rebricked
-updated: 2026-10-25
 ---
 
 A native port of LEGO Star Wars: The Complete Saga, and the game that

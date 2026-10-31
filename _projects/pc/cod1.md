@@ -12,7 +12,6 @@ summary: The training level plays through to completion. Widescreen, Hor+ FOV, a
 platforms: Linux x86-64; macOS on Apple Silicon (training played by hand)
 release: Steam (app 2620), v1.5b, single player
 repo: https://github.com/JTM-rootstorm/CoD1-Reissued
-updated: 2026-10-25
 ---
 
 A native port of Call of Duty's single player. Goals beyond running

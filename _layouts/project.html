@@ -21,7 +21,7 @@ layout: default
     <dd>branch <a href="{{ site.repo }}/tree/{{ system.branch }}"><code>{{ system.branch }}</code></a> (<a href="{{ site.repo }}/commits/{{ system.branch }}">commits</a>)</dd>
     {%- endif %}
     <dt>Updated</dt>
-    <dd>{{ page.updated | date: "%Y-%m-%d" }}</dd>
+    <dd>{% if page.repo %}{% include updated.html repo=page.repo %}{% else %}{% include updated.html repo=site.repo branch=system.branch %}{% endif %}</dd>
   </dl>
 
   {{ content }}

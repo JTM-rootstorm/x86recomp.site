@@ -12,7 +12,6 @@ status: Boots
 summary: The first PS4 port, on the Orbis module. Runs into the title flow and the attract movie with its frame loop at 60 Hz; no picture until the GPU front end.
 platforms: Linux x86-64 and macOS (planned)
 release: CUSA01130, version 01.00 (decrypted dump of your own copy)
-updated: 2026-10-25
 ---
 
 The first game on x86recomp's PS4 platform module, Orbis, and the test

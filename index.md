@@ -48,7 +48,7 @@ port builds from your own copy of the game.
       <td>{{ p.game }} ({{ p.year }}{% if p.arch %}, {{ p.arch }}{% endif %})</td>
       <td><span class="badge badge-{{ p.stage }}">{{ p.status }}</span></td>
       <td>{{ p.platforms }}</td>
-      <td>{{ p.updated | date: "%Y-%m-%d" }}</td>
+      <td>{% if p.repo %}{% include updated.html repo=p.repo %}{% else %}{% include updated.html repo=site.repo branch=s.branch %}{% endif %}</td>
     </tr>
     {%- endfor %}
   </tbody>

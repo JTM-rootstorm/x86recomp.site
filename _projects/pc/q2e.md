@@ -12,7 +12,6 @@ status: Boots
 summary: The first 64-bit guest. Both binaries lift and pass their oracle tests; it runs from the entry point through engine startup.
 platforms: Linux x86-64 and macOS (planned)
 release: GOG
-updated: 2026-10-24
 ---
 
 Quake II Enhanced (KEX engine) opens x86recomp's 64-bit path: x64 PE

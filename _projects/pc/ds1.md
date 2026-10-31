@@ -12,7 +12,6 @@ summary: Single player plays from a new game to Wesrin Cross, with sound, music,
 platforms: Linux x86-64; macOS on Apple Silicon (in game, scripted runs)
 release: GOG, version 1.11.1
 repo: https://github.com/JTM-rootstorm/DS1-Rebuilt
-updated: 2026-10-25
 ---
 
 The project x86recomp grew out of: the lifter, x87 model, runtime and

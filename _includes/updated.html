@@ -1,0 +1,6 @@
+{%- comment -%}
+The date of the latest commit in include.repo (on include.branch, else
+its default branch), filled in by the script in default.html; without
+it, a link to the commits.
+{%- endcomment -%}
+<a class="updated" href="{{ include.repo }}/commits{% if include.branch %}/{{ include.branch }}{% endif %}" data-repo="{{ include.repo | remove: 'https://github.com/' }}"{% if include.branch %} data-branch="{{ include.branch }}"{% endif %}>commits</a>
